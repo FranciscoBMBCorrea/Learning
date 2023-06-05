@@ -161,8 +161,8 @@ window.addEventListener('load', function () {
             this.spriteHeight = 135;
             this.width = this.spriteWidth;
             this.height = this.spriteHeight;
-            this.spriteX = this.collisionX - this.width * 0.5;
-            this.spriteY = this.collisionY - this.height * 0.5 - 30;
+            this.spriteX;
+            this.spriteY;
         }
 
         draw(context){
@@ -184,6 +184,9 @@ window.addEventListener('load', function () {
         }
 
         update(){
+            this.spriteX = this.collisionX - this.width * 0.5;
+            this.spriteY = this.collisionY - this.height * 0.5 - 30;
+
             let collisionObjects = [this.game.player, ...this.game.obstacles];
             collisionObjects.forEach(object => {
                 
