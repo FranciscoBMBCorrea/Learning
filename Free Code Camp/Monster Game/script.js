@@ -206,6 +206,16 @@ window.addEventListener('load', function () {
         }
     }
 
+    class Enemy {
+        constructor(game){
+            this.game = game;
+            this.collisionRadius = 30;
+            this.collisionX = this.game.width;
+            this.collisionY = Math.random() * this.game.height;
+            this.speedX = Math.random() * 3 + 0.5;
+        }
+    }
+
     class Game {
         constructor(canvas) {
             this.canvas = canvas;
