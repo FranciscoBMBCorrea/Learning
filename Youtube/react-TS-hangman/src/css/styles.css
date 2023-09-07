@@ -16,3 +16,9 @@
 .keyboard-align {
     align-self: stretch;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    gap: .5rem;
+}
