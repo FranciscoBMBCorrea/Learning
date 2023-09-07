@@ -15,7 +15,9 @@ function App() {
   <div className="lose-win">Lose Win</div>
   <HangmanDrawing />
   <HangmanWord />
+  <div className="keyboard-align">
   <Keyboard />
+  </div>
 </div>
 
   )
