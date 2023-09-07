@@ -1,0 +1,32 @@
+.set {
+    position: relative;
+}
+
+.base {
+    height: 10px;
+    width: 250px;
+    background: black;
+}
+
+.mast {
+    height: 400px;
+    width: 10px;
+    background: black;
+    margin-left: 120px;
+}
+
+.post {
+    height: 10px;
+    width: 200px;
+    background: black;
+    margin-left: 120px; 
+}
+
+.rope {
+        height: 50px;
+        width: 10px;
+        background: black;
+        position: absolute;
+        top: 0;
+        right: 0;
+}
