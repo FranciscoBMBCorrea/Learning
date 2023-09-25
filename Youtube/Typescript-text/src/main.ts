@@ -6,7 +6,7 @@ const typewriter = new Typewriter(document.body, { loop: true });
 typewriter
   .typeString("Where do I start?")
   .pauseFor(1000)
-  .typeString("\n\nfunction")
+  .typeString("\n\nfunctio")
   .deleteChars(7)
   .typeString("const temp")
   .pauseFor(150)
