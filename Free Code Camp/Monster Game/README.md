@@ -1,7 +1,7 @@
 Hello, everyone!👋
 This project is about front-end technologies. It was developed by Frank Dvorak and here is the [youtube link](https://www.youtube.com/watch?v=U34l-Xz5ynU) for you to watch! 
 
-#Project Info:
+**Project Info:**
 +vanilla JavaScript
 +HTML5
 +CSS3
