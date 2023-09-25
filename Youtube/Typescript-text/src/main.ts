@@ -1,6 +1,7 @@
 import "./style.css";
+import Typewriter from "./Typewriter";
 
-const typewriter = new Typewriter(element, { loop: true });
+const typewriter = new Typewriter(document.body, { loop: true });
 
 typewriter
   .typeString("Where do I start?")
