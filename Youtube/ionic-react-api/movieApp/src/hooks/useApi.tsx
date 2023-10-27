@@ -12,6 +12,13 @@ export enum SearchType {
   series = "series",
 }
 
+export interface SearchResult {
+  imdbID: string;
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+}
 // Interface defining the structure of detailed information retrieved from the OMDB API
 export interface DetailsResult {
   Actors: string;
@@ -25,6 +32,11 @@ export interface DetailsResult {
   Year: string;
 }
 
+export interface SearchError {
+  Response: string;
+  Error: string;
+}
+
 // Function encapsulating API calls to the OMDB service
 export const useApi = () => {
   // Base URL of the OMDB API
@@ -35,9 +47,12 @@ export const useApi = () => {
    * Searches for media based on title and search type.
    * @param {string} title - The search query.
    * @param {SearchType} type - The type of media to search for (movie, series, episode, or all).
-   * @returns {Promise<any>} - A Promise that resolves to the search results retrieved from the OMDB API.
+   * @returns {Promise<SearchResult[]>} - A Promise that resolves to the search results retrieved from the OMDB API.
    */
-  const searchData = async (title: string, type: SearchType): Promise<any> => {
+  const searchData = async (
+    title: string,
+    type: SearchType
+  ): Promise<SearchResult[] | SearchError> => {
     // Perform a fetch request to the OMDB API with the provided title, search type, and API key
     const result = await fetch(
       `${baseURL}?s=${encodeURI(title)}&type=${type}&apikey=${apiKey}`
@@ -54,10 +69,8 @@ export const useApi = () => {
    */
   const getDetails = async (id: string): Promise<DetailsResult> => {
     // Perform a fetch request to the OMDB API with the provided media ID, plot type, and API key
-    const result = await fetch(
-      `${baseURL}?i=${id}&plot=full&apikey=${apiKey}`
-    );
-    
+    const result = await fetch(`${baseURL}?i=${id}&plot=full&apikey=${apiKey}`);
+
     // Parse the JSON response and return the detailed information about the media item
     return result.json();
   };
