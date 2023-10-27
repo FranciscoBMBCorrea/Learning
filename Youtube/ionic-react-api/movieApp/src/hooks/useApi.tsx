@@ -22,6 +22,7 @@ export interface SearchResult {
 // Interface defining the structure of detailed information retrieved from the OMDB API
 export interface DetailsResult {
   Actors: string;
+  Awards: string;
   Director: string;
   Genre: string;
   imdbRating: string;
