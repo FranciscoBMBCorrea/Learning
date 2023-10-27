@@ -1,9 +1,6 @@
 /**
- * Enum representing different search types for the OMDB API.
- * all => Represents all media types;
- * episode => Represents episodes;
- * movie => Represents movies;
- * series => Represents TV series.
+ * Enum representing different types of search for the OMDB API.
+ * @enum {string}
  */
 export enum SearchType {
   all = "",
@@ -12,6 +9,10 @@ export enum SearchType {
   series = "series",
 }
 
+/**
+ * Interface representing the structure of a search result from the OMDB API.
+ * @interface
+ */
 export interface SearchResult {
   imdbID: string;
   Poster: string;
@@ -19,7 +20,11 @@ export interface SearchResult {
   Type: string;
   Year: string;
 }
-// Interface defining the structure of detailed information retrieved from the OMDB API
+
+/**
+ * Interface representing the detailed information about a movie or series from the OMDB API.
+ * @interface
+ */
 export interface DetailsResult {
   Actors: string;
   Awards: string;
@@ -33,55 +38,71 @@ export interface DetailsResult {
   Year: string;
 }
 
+/**
+ * Interface representing an error response from the OMDB API during a search.
+ * @interface
+ */
 export interface SearchError {
   Response: string;
   Error: string;
 }
 
-// Function encapsulating API calls to the OMDB service
+/**
+ * Custom hook for interacting with the OMDB API.
+ * @function
+ * @returns {Object} An object containing functions for searching and getting details.
+ * @property {Function} searchData - Function to search for movies or series.
+ * @property {Function} getDetails - Function to get detailed information about a specific movie or series.
+ */
 export const useApi = () => {
-  // Base URL of the OMDB API
+  // Base URL for the OMDB API
   let baseURL = "https://www.omdbapi.com/";
-  // API key for accessing the OMDB API
+
+  // API key for authentication
   let apiKey = "70c438ff";
+
   /**
-   * Searches for media based on title and search type.
-   * @param {string} title - The search query.
-   * @param {SearchType} type - The type of media to search for (movie, series, episode, or all).
-   * @returns {Promise<SearchResult[]>} - A Promise that resolves to the search results retrieved from the OMDB API.
+   * Function to search for movies or series based on title and type.
+   * @async
+   * @function
+   * @param {string} title - The title to search for.
+   * @param {SearchType} type - The type of search (all, episode, movie, series).
+   * @returns {Promise<SearchResult[] | SearchError>} A promise that resolves to search results or an error.
    */
   const searchData = async (
     title: string,
     type: SearchType
   ): Promise<SearchResult[] | SearchError> => {
-    // Perform a fetch request to the OMDB API with the provided title, search type, and API key
+    // Constructing the URL for the search query
     const result = await fetch(
       `${baseURL}?s=${encodeURI(title)}&type=${type}&apikey=${apiKey}`
     );
 
-    // Parse the JSON response and return the search results
+    // Returning the JSON result of the search
     return result.json();
   };
 
   /**
-   * Gets detailed information about a specific media item based on its ID.
-   * @param {string} id - The unique identifier of the media item.
-   * @returns {Promise<DetailsResult>} - A Promise that resolves to detailed information about the media retrieved from the OMDB API.
+   * Function to get detailed information about a specific movie or series by ID.
+   * @async
+   * @function
+   * @param {string} id - The ID of the movie or series.
+   * @returns {Promise<DetailsResult>} A promise that resolves to detailed information about the specified movie or series.
    */
   const getDetails = async (id: string): Promise<DetailsResult> => {
-    // Perform a fetch request to the OMDB API with the provided media ID, plot type, and API key
+    // Constructing the URL for the detailed information query
     const result = await fetch(`${baseURL}?i=${id}&plot=full&apikey=${apiKey}`);
 
-    // Parse the JSON response and return the detailed information about the media item
+    // Returning the JSON result of the detailed information query
     return result.json();
   };
 
-  // Expose the searchData and getDetails functions for external use
+  // Returning the functions for external use
   return {
     searchData,
     getDetails,
   };
 };
 
-// Export the useApi function as the default module from this file
+// Exporting the useApi function as the default export
 export default useApi;
