@@ -1,7 +1,10 @@
 import "./style.css";
 import Typewriter from "./Typewriter";
 
-const typewriter = new Typewriter(document.body, { loop: true });
+const typewriter = new Typewriter(
+  document.querySelector(".whitespace") as HTMLDivElement,
+  { loop: true }
+);
 
 typewriter
   .typeString("Where do I start?")
@@ -13,9 +16,9 @@ typewriter
   .deleteAll(10)
   .typeString("Why is this so hard?")
   .pauseFor(1000)
-  .typeString("\n\n\Does everyone struggle this much?")
+  .typeString("\n\nDoes everyone struggle this much?")
   .pauseFor(1000)
-  .typeString("\n\n\There has to be an easier way")
+  .typeString("\n\nThere has to be an easier way")
   .pauseFor(1000)
   .deleteAll(10)
   .start();
